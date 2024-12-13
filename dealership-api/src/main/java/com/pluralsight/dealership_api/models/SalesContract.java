@@ -1,6 +1,6 @@
-package com.pluralsight.dealership_api;
+package com.pluralsight.dealership_api.models;
 
-public class SalesContract extends Contract{
+public class SalesContract extends Contract {
     // Data fields
     private float salesTaxAmount = 0.05f, recordingFee = 100, processingFee;
     private boolean finance;

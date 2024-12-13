@@ -1,6 +1,6 @@
-package com.pluralsight.dealership_api;
+package com.pluralsight.dealership_api.models;
 
-public class LeaseContract extends Contract{
+public class LeaseContract extends Contract {
     // Data fields
     private float expectedEndingValue, leaseFee;
     private double originalPrice;

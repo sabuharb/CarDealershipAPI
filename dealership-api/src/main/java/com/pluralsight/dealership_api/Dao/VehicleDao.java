@@ -1,21 +1,25 @@
-package com.pluralsight.dealership_api;
+package com.pluralsight.dealership_api.Dao;
 
+import com.pluralsight.dealership_api.models.Vehicle;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class VehicleDao {
 
     private BasicDataSource dataSource;
+    private List<Vehicle> vehicles;
 
-    public VehicleDao(String username, String password){
-        this.dataSource = new BasicDataSource();
-        this.dataSource.setUrl("jdbc:mysql://localhost:3306/CarDealershipDatabase");
-        this.dataSource.setUsername(username);
-        this.dataSource.setPassword(password);
+    @Autowired
+    public VehicleDao(BasicDataSource dataSource){
+        this.dataSource = dataSource;
+        this.vehicles = new ArrayList<>();
     }
 
     // Search for vehicles by price range
@@ -235,4 +239,40 @@ public class VehicleDao {
         }
         return vehicles;
     }
+
+    // Add vehicles from database
+    public Vehicle insert(Vehicle vehicle){
+        Vehicle createdVehicle = null;
+        String sql = "INSERT INTO vehicles (vehicleName) VALUES (?)";
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            statement.setString(1, vehicle.getVin());
+            statement.setInt(2, vehicle.getYear());
+            statement.setString(3, vehicle.getMake());
+            statement.setString(4, vehicle.getModel());
+            statement.setString(5, vehicle.getVehicleType());
+            statement.setString(6, vehicle.getColor());
+            statement.setFloat(7, vehicle.getOdometer());
+            statement.setFloat(8, vehicle.getPrice());
+
+            statement.executeUpdate();
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if(generatedKeys.next()) {
+                createdVehicle = getById(generatedKeys.getInt(1));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return createdVehicle;
+    }
+
+    private Vehicle getById(int anInt) {
+    }
+
+    // Remove vehicles from database
+public boolean
+
 }

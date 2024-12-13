@@ -7,6 +7,11 @@ display the vehicles it returns.)
 
 package com.pluralsight.dealership_api;
 
+import com.pluralsight.dealership_api.Dao.VehicleDao;
+import com.pluralsight.dealership_api.models.Dealership;
+import com.pluralsight.dealership_api.models.SalesContract;
+import com.pluralsight.dealership_api.models.Vehicle;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +26,7 @@ public class UserInterface {
 
 
     // Parameterless constructor
-    public UserInterface(VehicleDao vehicleDao) {
+    public UserInterface() {
         this.vehicleDao = vehicleDao;
     }
 

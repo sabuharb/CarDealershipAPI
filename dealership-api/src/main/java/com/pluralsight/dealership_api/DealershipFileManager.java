@@ -6,6 +6,9 @@ DealershipFileManager will be responsible for reading the dealership file, parsi
 
 package com.pluralsight.dealership_api;
 
+import com.pluralsight.dealership_api.models.Dealership;
+import com.pluralsight.dealership_api.models.Vehicle;
+
 import java.io.*;
 
 public class DealershipFileManager {

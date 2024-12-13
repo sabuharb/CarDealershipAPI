@@ -1,5 +1,7 @@
 package com.pluralsight.dealership_api;
 
+import com.pluralsight.dealership_api.Dao.VehicleDao;
+
 public class Program {
     public static void main(String[] args) {
 
@@ -15,11 +17,10 @@ public class Program {
         String username = args[0];
         String password = args[1];
 
-        VehicleDao vehicleDao = new VehicleDao(username,password);
 
 
         // Instance of the UserInterface class and call its display method
-        UserInterface userInterface = new UserInterface(vehicleDao);
+        UserInterface userInterface = new UserInterface();
         userInterface.display();
 
     }

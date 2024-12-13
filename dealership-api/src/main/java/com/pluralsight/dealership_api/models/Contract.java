@@ -1,4 +1,4 @@
-package com.pluralsight.dealership_api;
+package com.pluralsight.dealership_api.models;
 
 public abstract class Contract {
     // Data fields

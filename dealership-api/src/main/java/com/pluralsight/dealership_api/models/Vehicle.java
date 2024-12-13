@@ -2,7 +2,7 @@
 Vehicle will hold information about a specific vehicle
  */
 
-package com.pluralsight.dealership_api;
+package com.pluralsight.dealership_api.models;
 
 public class Vehicle {
     // Data fields
