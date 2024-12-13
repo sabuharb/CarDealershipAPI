@@ -269,9 +269,22 @@ public class VehicleDao {
         return createdVehicle;
     }
 
-    private Vehicle getById(int anInt) {
+    private Vehicle getById(int id) {
+        Vehicle vehicle = null;
+        String sql = "SELECT categoryId, categoryName  FROM categories WHERE categoryId = ?;";
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rows = statement.executeQuery();
+            while(rows.next()){
+                Vehicle = new Vehicle(rows.getInt(1), rows.getString(2));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return vehicle;
     }
-
     // Remove vehicles from database
 public boolean
 
